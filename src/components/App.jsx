@@ -24,7 +24,6 @@ export class App extends React.Component {
 state = {
   contacts: [],
   filter: "",
-  
   }
 
   componentDidMount() {
@@ -63,6 +62,7 @@ componentDidUpdate(prevProps, prevState) {
 
   handleAdd = (formdate) => {
     const { name, number } = formdate;
+
     if (this.state.contacts.find((elem) => elem.name === name))
     {
       alert(`Person with name ${name} is in a date`)
@@ -77,8 +77,10 @@ componentDidUpdate(prevProps, prevState) {
   }
 
   render() {
-    const filterContacts = this.state.contacts.filter(
-      (cont) => cont.name.toLowerCase().includes(this.state.filter.toLowerCase()))
+
+    const {contacts,filter} =this.state
+    const filterContacts = contacts.filter(
+      (cont) => cont.name.toLowerCase().includes(filter.toLowerCase()))
     return (
       <div
         style={{
@@ -91,8 +93,8 @@ componentDidUpdate(prevProps, prevState) {
           flexDirection: "column"
         }}
       >
-        <ContactForm onSubmit={this.handleAdd} contacts={this.state.contacts } />
-        <Filter filter={this.currentTarget} func={this.onFilter} len={ this.state.contacts} />
+        <ContactForm onSubmit={this.handleAdd} contacts={contacts} />
+        <Filter filter={this.currentTarget} func={this.onFilter} len={contacts} />
         <Box sx={{ width: '100%' }}>
           <Stack spacing={2}>
             <Item>
