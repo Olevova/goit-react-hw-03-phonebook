@@ -3,12 +3,14 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import style from './ContacForm.module.scss'
+import style from './ContacForm.module.scss';
+import PropTypes from "prop-types";
 
 export class ContactForm extends React.Component{ 
   state = {
     name: '',
-    number: ''
+    number: '',
+
   }
 
     handleName = ev =>
@@ -27,7 +29,11 @@ export class ContactForm extends React.Component{
     e.preventDefault();
 
     console.log(this.state);
+    console.log(this.props.contacts);
     this.props.onSubmit(this.state);
+    if (this.props.contacts.find((i) => i.name === this.state.name)) {
+      return
+    }
     this.reset();
   }
 
@@ -82,4 +88,8 @@ export class ContactForm extends React.Component{
         
   }
 
+}
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }

@@ -63,7 +63,6 @@ componentDidUpdate(prevProps, prevState) {
 
   handleAdd = (formdate) => {
     const { name, number } = formdate;
-    // e.preventDefault();
     if (this.state.contacts.find((elem) => elem.name === name))
     {
       alert(`Person with name ${name} is in a date`)
@@ -92,7 +91,7 @@ componentDidUpdate(prevProps, prevState) {
           flexDirection: "column"
         }}
       >
-        <ContactForm onSubmit={this.handleAdd} />
+        <ContactForm onSubmit={this.handleAdd} contacts={this.state.contacts } />
         <Filter filter={this.currentTarget} func={this.onFilter} len={ this.state.contacts} />
         <Box sx={{ width: '100%' }}>
           <Stack spacing={2}>
