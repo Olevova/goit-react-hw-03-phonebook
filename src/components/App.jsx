@@ -35,8 +35,9 @@ state = {
 
 
 componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state) {
-      localStorage.setItem(LOCALSTOREG_KEY, JSON.stringify(this.state.contacts));
+    const{contacts} = this.state
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem(LOCALSTOREG_KEY, JSON.stringify(contacts));
   }
 }
 
